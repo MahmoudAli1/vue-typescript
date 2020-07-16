@@ -1,8 +1,7 @@
 import { Renovation } from "@leam-tech/renovation-core";
 import { PluginObject } from "vue/types/plugin";
 import { InitParams } from "@leam-tech/renovation-core/renovation";
-import { setRenovationCoreInstance } from "@/utis/renovation-accessor";
-import { FrappeRequestOptions } from "@leam-tech/renovation-core/utils/request";
+import { setRenovationCoreInstance } from "@/utils/renovation-accessor";
 
 const RenovationPlugin: PluginObject<{ renovation: Renovation }> = {
   async install(Vue, options) {
@@ -31,11 +30,6 @@ const RenovationPluginFactory = (
   }>(resolve => {
     const renovation = new Renovation();
     renovation.init(initParams);
-    const localeFromStorage = localStorage.getItem("locale");
-    const locale =
-      localeFromStorage && localeFromStorage === "ar" ? "ar" : "en";
-    const localeIso = localeFromStorage === "ar" ? "ar-AE" : "en-US";
-    FrappeRequestOptions.headers["Accept-Language"] = [localeIso, locale];
     resolve({ plugin: RenovationPlugin, renovation });
   });
 };

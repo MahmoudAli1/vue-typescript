@@ -1,31 +1,36 @@
 module.exports = {
   root: true,
+
   env: {
+    browser: true,
     node: true
   },
-  extends: [
-    "plugin:vue/essential",
-    "eslint:recommended",
-    "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/prettier/@typescript-eslint"
-  ],
-  parserOptions: {
-    ecmaVersion: 2020
-  },
+
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/ban-ts-ignore": "warn",
+    "no-prototype-builtins": "warn",
+    "no-empty": "warn",
+    "@typescript-eslint/type-annotation-spacing": "warn",
+    "vue/no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-function": "warn",
+    "no-useless-escape": "warn"
   },
-  overrides: [
-    {
-      files: [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
-      env: {
-        mocha: true
-      }
-    }
+
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+    jsx: true,
+    useJSXTextNode: true,
+    ecmaVersion: 2020
+  },
+
+  extends: [
+    "plugin:vue/essential",
+    "@vue/prettier",
+    "@vue/typescript",
+    "eslint:recommended",
+    "@vue/typescript/recommended"
   ]
 };
